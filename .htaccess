@@ -1,0 +1,47 @@
+# edwardrmorrison.com - Apache config for GoDaddy shared hosting.
+# Conservative on purpose. There is no http-to-https redirect here: that is the one
+# directive that can loop behind GoDaddy's proxy. Turn HTTPS on in cPanel instead
+# (Security > SSL, then "Force HTTPS Redirect" on the domain).
+
+DirectoryIndex index.html
+
+# Serve everything as UTF-8 so accented names in titles render correctly.
+AddDefaultCharset UTF-8
+
+# No directory listings if a URL resolves to a folder with no index.
+Options -Indexes
+
+ErrorDocument 404 /404.html
+
+# The Jekyll source is kept in the repo for rebuilding. It is not part of the
+# website. This is a safety net in case the whole repo is ever uploaded.
+RedirectMatch 404 ^/_source/
+RedirectMatch 404 ^/\.
+
+# GitHub Pages used to serve /books for books.html. Apache does not, so an old link
+# to an extensionless URL would 404. Only rewrites when the bare path does not exist
+# and the .html file does, so it can never shadow a real file or folder.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.+)$ $1.html [L]
+</IfModule>
+
+<IfModule mod_mime.c>
+  AddType application/pdf .pdf
+  AddType text/css .css
+  AddType application/javascript .js
+</IfModule>
+
+# Let the browser cache the portrait, stylesheet and CVs. Wrapped so the site still
+# loads if the module is not enabled on this plan.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css            "access plus 7 days"
+  ExpiresByType application/javascript "access plus 7 days"
+  ExpiresByType image/jpeg          "access plus 30 days"
+  ExpiresByType application/pdf     "access plus 7 days"
+  ExpiresByType text/html           "access plus 1 hour"
+</IfModule>
