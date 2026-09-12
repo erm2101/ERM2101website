@@ -1,0 +1,8 @@
+---
+layout: default
+---
+			<h2>Published Papers</h2>
+{% for p in site.data.publications %}
+			<h3>{% if p.url %}<a href="{{ p.url }}"><b>{{ p.title }}</b></a>{% else %}<b>{{ p.title }}</b>{% endif %}<span style="font-weight:normal;">{% if p.journal %}{% if p.year %} {{ p.year }},{% endif %} <i>{{ p.journal }}</i>{% if p.volume %} {{ p.volume }}{% endif %}{% elsif p.book %} in <i>{% if p.book_url %}<a href="{{ p.book_url }}">{{ p.book }}</a>{% else %}{{ p.book }}{% endif %}</i>{% if p.book_note %} {{ p.book_note }}{% endif %}{% elsif p.outlet %} in {{ p.outlet }}{% endif %}</span></h3>
+{% if p.coauthors %}			<p>With {% include coauthors.html list=p.coauthors %}</p>
+{% endif %}{% endfor %}

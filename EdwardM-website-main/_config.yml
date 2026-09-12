@@ -1,0 +1,8 @@
+title: Professor Edward R. Morrison
+description: Charles Evans Gerber Professor of Law, Columbia Law School
+url: https://edwardrmorrison.com
+exclude:
+  - _archive
+  - README.md
+  - Gemfile
+  - Gemfile.lock

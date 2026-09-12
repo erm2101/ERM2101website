@@ -1,0 +1,8 @@
+---
+layout: default
+---
+			<h2>Working Papers</h2>
+{% for p in site.data.working_papers %}
+			<h3>{% if p.url %}<a href="{{ p.url }}"><b>{{ p.title }}</b></a>{% else %}<b>{{ p.title }}</b>{% endif %}<span style="font-weight:normal;">, {{ p.status }}</span></h3>
+{% if p.coauthors %}			<p>With {% include coauthors.html list=p.coauthors %}</p>
+{% endif %}{% endfor %}

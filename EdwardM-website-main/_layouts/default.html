@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Professor {{ site.data.profile.name }}</title>
+	<meta content="{{ site.description }}" name="description">
+	<meta content="width=device-width, initial-scale=1" name="viewport"><!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<link href="styles.css" rel="stylesheet">
+</head>
+<body>
+	<div class="wrapper">
+		<header>
+			<h1>{{ site.data.profile.name }}</h1>
+{%- for t in site.data.profile.titles %}
+			<p><span style="font-weight:normal;">{{ t.role }}, <a href="{{ t.url }}">{{ t.org }}</a></span></p>
+{%- endfor %}
+			<img src="{{ site.data.profile.portrait }}" alt="{{ site.data.profile.portrait_alt }}">
+		</header>
+		<section>
+			<h2>Navigation</h2>
+{%- for item in site.data.nav %}
+			<p><a href="{{ item.url }}">{{ item.text }}</a></p>
+{%- endfor %}
+
+{{ content }}
+		</section>
+	</div>
+
+	<!-- Start of StatCounter Code for Default Guide -->
+	<script type="text/javascript">
+	       var sc_project=8474952; 
+	       var sc_invisible=1; 
+	       var sc_security="a895cd56";
+	       var scJsHost = (("https:" == document.location.protocol) ?
+	       "https://secure." : "http://www.");
+	       document.write("<sc"+"ript type='text/javascript' src='" +
+	       scJsHost +
+	       "statcounter.com/counter/counter.js'></"+"script>");
+	</script>
+	<!-- End of StatCounter Code for Default Guide -->
+
+	<script src="scale.fix.js"></script>
+</body>
+</html>

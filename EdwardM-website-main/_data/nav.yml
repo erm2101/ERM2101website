@@ -1,0 +1,10 @@
+- text: Home
+  url: index.html
+- text: Books
+  url: books.html
+- text: Published Papers
+  url: publishedpapers.html
+- text: Working Papers
+  url: workingpapers.html
+- text: Amicus Briefs
+  url: amicusbriefs.html
